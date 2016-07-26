@@ -51,4 +51,4 @@ for i in xrange(number_of_classes):             #each class
         survival_table[1,i,j] = np.mean(men_only_stats.astype(np.float))
         survival_table[ survival_table != survival_table ] = 0.
 
-print survival_table
+print(survival_table)
