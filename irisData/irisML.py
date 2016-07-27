@@ -1,33 +1,50 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
-import itertools
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier
-from mlxtend.classifier import EnsembleVoteClassifier
-from mlxtend.data import iris_data
-from mlxtend.evaluate import plot_decision_regions
+from sklearn import svm, datasets
 
-# Initializing Classifiers
-clf1 = LogisticRegression(random_state=0)
-clf2 = RandomForestClassifier(random_state=0)
-clf3 = SVC(random_state=0, probability=True)
-eclf = EnsembleVoteClassifier(clfs=[clf1, clf2, clf3], weights=[2, 1, 1], voting='soft')
+# import some data to play with
+iris = datasets.load_iris()
+X = iris.data[:, :2]  # we only take the first two features. We could
+                      # avoid this ugly slicing by using a two-dim dataset
+y = iris.target
 
-# Loading some example data
-X, y = iris_data()
-X = X[:,[0, 2]]
+h = .02  # step size in the mesh
 
-# Plotting Decision Regions
-gs = gridspec.GridSpec(2, 2)
-fig = plt.figure(figsize=(10, 8))
+# we create an instance of SVM and fit out data. We do not scale our
+# data since we want to plot the support vectors
+C = 1.0  # SVM regularization parameter
+clf = svm.SVC(kernel='linear', C=C).fit(X, y)
+# rbf_svc = svm.SVC(kernel='rbf', gamma=0.7, C=C).fit(X, y)
+# poly_svc = svm.SVC(kernel='poly', degree=3, C=C).fit(X, y)
+# lin_svc = svm.LinearSVC(C=C).fit(X, y)
 
-for clf, lab, grd in zip([clf1, clf2, clf3, eclf],
-                         ['Logistic Regression', 'Random Forest', 'RBF kernel SVM', 'Ensemble'],
-                         itertools.product([0, 1], repeat=2)):
-    clf.fit(X, y)
-    ax = plt.subplot(gs[grd[0], grd[1]])
-    fig = plot_decision_regions(X=X, y=y, clf=clf, legend=2)
-    plt.title(lab)
+# create a mesh to plot in
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                     np.arange(y_min, y_max, h))
+
+# title for the plots
+titles = ['SVC with linear kernel',
+          'LinearSVC (linear kernel)',
+          'SVC with RBF kernel',
+          'SVC with polynomial (degree 3) kernel']
+
+# Plot the decision boundary. For that, we will assign a color to each
+# point in the mesh [x_min, m_max]x[y_min, y_max].
+Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+# Put the result into a color plot
+Z = Z.reshape(xx.shape)
+plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
+
+# Plot also the training points
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
+plt.xlabel('Sepal length')
+plt.ylabel('Sepal width')
+plt.xlim(xx.min(), xx.max())
+plt.ylim(yy.min(), yy.max())
+plt.xticks(())
+plt.yticks(())
+plt.title(titles[1])
+
 plt.show()
