@@ -20,4 +20,8 @@ NN gets most similar and do majority votes on it
 knn tend to have good performance test time
 
 take train data and try out a lot of hyperparameters
+
+separate traing data into folds and test it on validation data.
+don't touch test data because of generalization
+cross validation - used when have littel train data
 '''
