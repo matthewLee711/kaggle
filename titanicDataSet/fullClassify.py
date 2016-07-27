@@ -18,15 +18,16 @@ data = np.array(data)       # Then convert from a list to an array
 #y of class labels (strings or integers), size [n_samples]
 X = data[:,[1,2]]
 y = data[:, 0]
-
-# number_passengers = np.size(data[0::,1].astype(np.float))
-# number_survived = np.sum(data[0::,1].astype(np.float))
-
 clf.fit(X, y)
 
-# X = X.T#transpose - need to transpose data because of the shape
-print(X.shape)
-#Graphing
+#Create mesh to plot in
+h = .02  # step size in the mesh
+x_min, x_max = X[:,0].min() - 1, X[:,0].max() + 1
+y_min, y_max = X[:,1].min() - 1, X[:,1].max() + 1
+xx, yy = np.meshgrid(np.arrange(x_min, x_max, h),
+                    np.arrange(y_min, y_max, h))
+
+#Graphing data points
 # plot_decision_regions(X=X, y=y, clf=clf)
 # plt.scatter(data[:, 1], data[:, 2], color='red', marker='o', label='class')
 plt.scatter(data[:, 9], data[:, 1], color='blue', marker='o')
@@ -37,10 +38,8 @@ plt.xlim([0,100])
 plt.title('SVM in scikit-learn')
 plt.show()
 
-#must be executed after graph
-plt.xlim([0,500])
 
-#
+#Calculate accuracy
 # pred = clf.predict(features_test)
 #
 # from sklearn.metrics import accuracy_score

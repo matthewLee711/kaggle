@@ -25,17 +25,15 @@ print(data[:,9])
 #y of class labels (strings or integers), size [n_samples]
 X = data[:,[1,2]]
 y = data[:, 0]
-
 # number_passengers = np.size(data[0::,1].astype(np.float))
 # number_survived = np.sum(data[0::,1].astype(np.float))
-
 clf.fit(X, y)
-
 
 # list1 = [1, 2, 3, 4, 5]
 # list2 = [1, 2, 3, 4, 5]
 # plt.scatter(list1, list2, color='red', marker='o', label='setosa')
-
+# X = X.T#transpose - need to transpose data because of the shape
+print(X.shape)
 
 #Graphing
 # scatter(x, y, etc.)
