@@ -112,11 +112,47 @@ goal is lower your total loss. but not to zero
 '''
 
 '''
-Optimization:
+Optimization: 3-50
 Attempting to get to low loss.
-Gradient Descent
+Numerical gradient
 Compute the slope to go down hill
+Cons:
+    approximate
+    slow
+Numerical gradient:
+    approximate
+    slow
+Analytic gradient:
+    exact, fast, error prone
+ALWAYS USE analytic gradient, but use numerical gradient to check it (gradient check)
+run both at same time and compare AND MAKE sure they are the same (pass gradient check)
 
+To develop a new module for neural network:
+    1. get loss
+    2. get backward pass that computes gradient
+    3. Then do gradient check to make sure the calculus was correct
+
+Gradient Descent
+
+step_size/learning rate AND weight regularization strength are difficult to manage
+and what we cross validate over
+step size is much step to take when moving in gradient direction
+
+Mini batch gradient Descent
+-only use small portion of training set to compute gradient -- noisy though, but more steps
+-this tends to work better.
+Use specific minibatch size to fit on your gpu.
+The issue which exists is finding the correct learning rate
+    -Too high learning rate willresult in a lot of loss
+    -Really low learning rate will result in good loss, but its only ok
+    -so do a fast learning rate, then switch to low learning (parameter update/momentum)
+    keep track of velocity (adagrad seems good)
+
+Now we can do linear classifiers...
+'''
+
+'''
+History - HOG/SIFT find edges then create histograms based on those
 '''
 
 
