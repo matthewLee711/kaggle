@@ -32,7 +32,7 @@ clf.fit(X, y)
 # list1 = [1, 2, 3, 4, 5]
 # list2 = [1, 2, 3, 4, 5]
 # plt.scatter(list1, list2, color='red', marker='o', label='setosa')
-# X = X.T#transpose - need to transpose data because of the shape
+# X = X.T #transpose - need to transpose data because of the shape
 print(X.shape)
 
 #Graphing
