@@ -159,11 +159,21 @@ History - HOG/SIFT find edges then create histograms based on those
 #LECTURE 3 BACKPROPAGATION
 #conv nets
 '''
+Important
 currently:
 score function
-SVM loss function
+loss function
 data loss + regularization function
 optimization: gradient Descent
+     gradient is a fancy word for derivative, or the rate of change of a function
+     https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/
+
+Computational graphs
+-forward pass -left to right recursive
+
+Backpropagation
+Computing gradient of expressions through recursive application of chain rule
+
 '''
 
 
