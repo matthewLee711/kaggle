@@ -156,6 +156,15 @@ History - HOG/SIFT find edges then create histograms based on those
 '''
 
 
+#LECTURE 3 BACKPROPAGATION
+#conv nets
+'''
+currently:
+score function
+SVM loss function
+data loss + regularization function
+optimization: gradient Descent
+'''
 
 
 
