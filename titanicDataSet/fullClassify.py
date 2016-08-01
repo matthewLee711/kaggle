@@ -14,7 +14,7 @@ data=[]
 
 for row in csv_file_object: # Go through each row in the csv file
     data.append(row)        # adding each row to the data variable
-data = np.array(data)       # Then convert from a list to an array
+data = np.array(data)       # Then convert from a list to np array
 
 #print(data[:,9]) #fare
 #Need to use a classification algorithm because categorizing
