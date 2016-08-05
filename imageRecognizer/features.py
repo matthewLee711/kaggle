@@ -4,26 +4,31 @@ import Image
 '''
 Extracts features from an input image
 1. Converts an image into a 1D vector.
-2. 
+2.
 '''
-img = Image.open('orig.png').convert('RGBA')
-arr = np.array(img)
 
-# record the original shape
-shape = arr.shape
+def featureExtraction():
+    img = Image.open('orig.png').convert('RGBA')
+    arr = np.array(img)
 
-# make a 1-dimensional view of arr
-flat_arr = arr.ravel()
+    # record the original shape
+    shape = arr.shape
 
-# convert it to a matrix
-vector = np.matrix(flat_arr)
+    # make a 1-dimensional view of arr
+    flat_arr = arr.ravel()
 
-# do something to the vector
-vector[:,::10] = 128
+    # convert it to a matrix
+    vector = np.matrix(flat_arr)
 
-# reform a numpy array of the original shape
-arr2 = np.asarray(vector).reshape(shape)
+    # do something to the vector
+    vector[:,::10] = 128
 
-# make a PIL image
-img2 = Image.fromarray(arr2, 'RGBA')
-img2.show()
+    # reform a numpy array of the original shape
+    arr2 = np.asarray(vector).reshape(shape)
+
+    # make a PIL image
+    img2 = Image.fromarray(arr2, 'RGBA')
+    img2.show()
+
+def red2gray():
+    print("gray")
