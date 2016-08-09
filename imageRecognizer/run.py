@@ -174,10 +174,82 @@ Computational graphs
 Backpropagation
 Computing gradient of expressions through recursive application of chain rule
 
+Vectorized Operations: Jacobian Matrix
+Communincation between the gates are vectors, but they only care about gradient
+In practice we process entire minibatch of 100 examples at one time so 100 4096d output vectors
+409600x409600
+'''
+
+'''
+Assignment writing svm/softmax 49:35
+
+neural nets will be very large: no hope of writing down gradient formula by
+hand for all parameters
+- backpropagation = recursive application of the chain rule along a
+computational graph to compute the gradients of all
+inputs/parameters/intermediates
+- implementations maintain a graph structure, where the nodes implement
+the forward() / backward() API.
+- forward: compute result of an operation and save any intermediates
+needed for gradient computation in memory
+- backward: apply the chain rule to compute the gradient of the loss
+function with respect to the inputs.
+'''
+
+'''
+Neural network - scoring
+
+Linear score function:
+f = Wx
+(more complex matethmatical expression of x)
+2 layer neural network:
+f = W_2 max(0,W_1(x))
+
+Recieve input x, multiplied by matrix
+do matrix multiply and threshold of everything negative to zero is activation function,
+and then do one more matrix multiply
+This gives us our score
+
+Matrix multiply gives us 100 numbers and another matrix multiply to get scores
+The more layers you have, the more matrix multiplies you do
+
+With linear scoring, you only have one number for comparision.
+Ex. red car forward backwards, side, etc.
+With neural networks, you have hundreds of numbers and each can be for a different car.
+2 layers
+elements of h (hyperparamter become positive to more similarities found)
+h is also size of hidden parameter(we get to choose also want as big as possible)
+W1
+W2 sum accross all car templates
+
+neurons turn on and off if they find a specific score
+
+BY Adding more layers, you can compute more interesting function from the image
+
+'''
+
+'''
+Assignment: Writing 2 layer net
+train with backpropagation
+*generate weights: you need to use
+
+ReLu is faster than sigmoid. Default non linearilty
+count layers by which ones have weights
+kernel trick, changing your data so it is linearly separable
+
+
+we arrange neurons into fully-connected layers
+- the abstraction of a layer has the nice property that it
+allows us to use efficient vectorized code (e.g. matrix
+multiplies)
+- neural networks are not really neural
+- neural networks: bigger = better (but might have to
+regularize more strongly)
 '''
 
 
-
+'''
+'''
 
 
 
