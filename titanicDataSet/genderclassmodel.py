@@ -52,3 +52,20 @@ for i in xrange(number_of_classes):             #each class
         survival_table[ survival_table != survival_table ] = 0.
 
 print survival_table
+"""
+[[[ 0. 0. 0.83333333 0.97727273]
+  [ 0. 0.91428571 0.9 1. ]
+  [ 0.59375 0.58139535 0.33333333 0.125 ]]
+
+ [[ 0. 0. 0.4 0.38372093]
+  [ 0. 0.15873016 0.16 0.21428571]
+  [ 0.11153846 0.23684211 0.125 0.24 ]]]
+"""
+
+#Write to file
+test_file = open('../csv/test.csv', 'rb')
+test_file_object = csv.reader(test_file)
+header = test_file_object.next()
+predictions_file = open("../csv/genderclassmodel.csv", "wb")
+p = csv.writer(predictions_file)
+p.writerow(["PassengerId", "Survived"])
