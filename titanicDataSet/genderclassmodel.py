@@ -51,6 +51,7 @@ for i in xrange(number_of_classes):             #each class
         survival_table[1,i,j] = np.mean(men_only_stats.astype(np.float))
         survival_table[ survival_table != survival_table ] = 0.
 
+<<<<<<< HEAD
 print survival_table
 """
 [[[ 0. 0. 0.83333333 0.97727273]
@@ -69,3 +70,6 @@ header = test_file_object.next()
 predictions_file = open("../csv/genderclassmodel.csv", "wb")
 p = csv.writer(predictions_file)
 p.writerow(["PassengerId", "Survived"])
+=======
+print(survival_table)
+>>>>>>> 66339211a8d06273aa8af2dff974ffe9be4550cc
